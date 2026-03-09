@@ -5,6 +5,7 @@ Streamlit app with Executive Summary, Descriptive Analytics,
 Model Performance, and Explainability & Interactive Prediction.
 """
 
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -13,6 +14,8 @@ import shap
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
+BASEDIR = Path(__file__).resolve().parent
 
 st.set_page_config(
     page_title="Sephora Price Tier Dashboard",
@@ -24,7 +27,7 @@ st.set_page_config(
 
 @st.cache_resource
 def load_artifacts():
-    with open(r'C:\Malvika\sephora_dashboard\model_artifacts.pkl', 'rb') as f:
+    with open(BASEDIR / 'model_artifacts.pkl', 'rb') as f:
         return pickle.load(f)
 
 art = load_artifacts()
@@ -45,7 +48,7 @@ n_products = art['n_products']
 budget_count = art['budget_count']
 premium_count = art['premium_count']
 mlp_history = art.get('mlp_history', None)
-OUTDIR = r'C:\Malvika\sephora_dashboard'
+OUTDIR = str(BASEDIR)
 
 # Compute dynamic metrics
 best_model = max(cv_results, key=lambda k: cv_results[k]['roc_auc_mean'])
