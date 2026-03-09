@@ -32,7 +32,8 @@ import seaborn as sns
 import tensorflow as tf
 from tensorflow import keras
 
-OUTDIR = r'C:\Malvika\sephora_dashboard'
+from pathlib import Path
+OUTDIR = str(Path(__file__).resolve().parent)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # 1. LOAD & PARSE
