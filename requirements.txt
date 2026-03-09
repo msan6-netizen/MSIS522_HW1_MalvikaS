@@ -7,3 +7,4 @@ shap
 streamlit
 matplotlib
 seaborn
+altair<6
